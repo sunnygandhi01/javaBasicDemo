@@ -64,13 +64,23 @@ public class Main<calculators> {
                 "divide 10.0 5.0",
                 "add 100.0 50.0",
                 "subtract 40.0 20.0",
-                "multiple 5.0 5.0"
+                "multiple 5.0 5.0",
+                "add 1.0",
+                "add xx 25.0",
+                "addx 0.0, 0.0"
         };
 
         CalculatorHelper helper = new CalculatorHelper();
         for (String statement: Statements) {
-            helper.process(statement);
-            System.out.println(helper);
+            try {
+                helper.process(statement);
+                System.out.println(helper);
+            } catch (InvalidStatementException e) {
+                System.out.println(e.getMessage());
+                if(e.getCause() != null)
+                    System.out.println("Original excepition: " + e.getCause().getMessage());
+            }
+
         }
 
     }
